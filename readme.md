@@ -4,9 +4,7 @@ A recipe for a light middleman API using [Cloudflare Workers](https://blog.Cloud
 
 ## Why?
 ### Keeping secrets secret 👮🏼‍♂️
-With Cloudflare Workers we can leverage [environmental variables](https://developers.Cloudflare.com/workers/platform/environments) and [secrets](https://developers.Cloudflare.com/workers/cli-wrangler/commands#secret)[^1], to keep these details out of your HTTP requests, code base and repos. 🎉
-
-[^1](https://blog.Cloudflare.com/workers-secrets-environment/)
+With Cloudflare Workers we can leverage [environmental variables](https://developers.Cloudflare.com/workers/platform/environments) and [secrets](https://developers.Cloudflare.com/workers/cli-wrangler/commands#secret)[1](https://blog.Cloudflare.com/workers-secrets-environment/), to keep these details out of your HTTP requests, code base and repos. 🎉
 
 ### Simplicity & Cost 💰
 Cloudflare Workers are 'serverless', written in JavaScript, and are easy to spool up, thereby removing the setup and maintenance overhead of complex back-end tooling. Their generous free tier is perfect for side projects, low traffic Jamstack sites, Github Pages, etc.
@@ -30,7 +28,6 @@ While Cloudflare Workers have access to the powerful cache-control features of t
 ### Errors 🚨
 In addition to console logs in the Workers Quick Edit interface, HTTP and upstream API errors are passed through to the response object with handle-able `{'errror': response}` entries  for each request. A single non-responsive endpoint won't bring the whole thing down.
 
-
 ## What cooking in this recipe? 🍲 🥘
 
 In this recipe, for demonstration we use the [WeatherBit.io](https://www.weatherbit.io/) APIs, with the API key stored in a [environment variable](https://gomakethings.com/how-to-use-environment-variables-with-Cloudflare-workers-and-vanilla-js/).
@@ -45,34 +42,33 @@ Once your worker is published, try running the URL for it in your browser: `http
 
 Your should receive the following:
 
->#### 403 Not a whitelisted domain.
-  **content-length:** `42`
-  **content-type:** `text/plain;charset=UTF-8`
-  `Requests are not allowed from this domain.`
+>#### 403 Not a whitelisted domain. <br>
+>  **content-length:** `42` <br>
+>  **content-type:** `text/plain;charset=UTF-8` <br>
+>  `Requests are not allowed from this domain.`<br>
 
 Now set the variable  `bDBG = true` and re-run the request. You should now get the following:
 
->####200 OK
-access-control-allow-headers: `*`
-access-control-allow-methods: `GET`
-access-control-allow-origin: `*`
-content-length: `381`
-content-type: `application/json;charset=UTF-8`
-{"USEAGE":{"calls_remaining":49756,"historical_calls_count":null,"calls_count":"244","calls_reset_ts":1616457599,"historical_calls_reset_ts":null,"historical_calls_remaining":null},"CURRENT":{"error":"Invalid Parameters supplied."}, "HOURLY":{"error":"Invalid Parameters supplied."}, "DAILY":{"error":"Invalid Parameters supplied."}, "ALERTS":{"error":"Invalid Parameters supplied."}}
+>####200 OK <br>
+> **access-control-allow-headers:** `*` <br>
+> **access-control-allow-methods:** `GET` <br>
+> **access-control-allow-origin:** `*`<br>
+> **content-length:** `381`<br>
+> **content-type: **`application/json;charset=UTF-8` <br>
+> {"USEAGE":{"calls_remaining":49756,"historical_calls_count":null,"calls_count":"244","calls_reset_ts":1616457599,"historical_calls_reset_ts":null,"historical_calls_remaining":null},"CURRENT":{"error":"Invalid Parameters supplied."}, "HOURLY":{"error":"Invalid Parameters supplied."}, "DAILY":{"error":"Invalid Parameters supplied."}, "ALERTS":{"error":"Invalid Parameters supplied."}}
 
 The WeatherBit API requires a location in order to do its  `☀️ || ⛈` magic. Try adding longitude and latitude values:
 `https://YOURWORKER.YOURACCOUNT.workers.dev/?lat=28.385233&lon=-81.563873`
 
->####200 OK
-access-control-allow-headers: `*`
-access-control-allow-methods: `GET`
-access-control-allow-origin: `*`
-content-length: `381`
-content-type: `application/json;charset=UTF-8`
-{"USEAGE":{"calls_remaining":XXXX,"historical_calls_count":null,"call_count":"XXX","calls_reset_ts":XXXXXXX,"historical_calls_reset_ts":null,"historical_calls_remaining":null},"CURRENT":{"data": ⛄ ☀️⛅☔ } ... }
+>####200 OK <br>
+> **access-control-allow-headers:** `*` <br>
+> **access-control-allow-methods: **`GET`<br>
+> **access-control-allow-origin:** `*`<br>
+> **content-length:** `381`<br>
+> **content-type:** `application/json;charset=UTF-8`<br>
+> {"USEAGE":{"calls_remaining":XXXX,"historical_calls_count":null,"call_count":"XXX","calls_reset_ts":XXXXXXX,"historical_calls_reset_ts":null,"historical_calls_remaining":null},"CURRENT":{"data": ⛄ ☀️⛅☔ } ... }
 
 🍸!
-
 
 ## Testing
 Once your API is live, you may not want to set the `bDBG` boolean variable. However for quick checks for what your responses are, you can pop open the console on one of your white listed domains and run the following:
@@ -108,10 +104,7 @@ Details on limits: [Workers Limits](https://developers.Cloudflare.com/workers/pl
 ---
 
 #### How many fetch sub-requests  can I make on a CF Worker?
-CF caps the number of subrequests[^1] at 50, with each redirect counting towards this limit. This means that the total number of subrequests may be greater then the total number of `fetch(request)` calls in your Worker's code.[^2]
-
-[^1]](https://support.Cloudflare.com/hc/en-us/articles/360007553512-Cloudflare-analytics-with-Workers#h_2fFcubz4ukNYtTF18oZYXV)
-[^2](https://developers.Cloudflare.com/workers/platform/limits#how-many-subrequests-can-i-make)
+CF caps the number of subrequests[1](https://support.Cloudflare.com/hc/en-us/articles/360007553512-Cloudflare-analytics-with-Workers#h_2fFcubz4ukNYtTF18oZYXV) at 50, with each redirect counting towards this limit. This means that the total number of subrequests may be greater then the total number of `fetch(request)` calls in your Worker's code.[2](https://developers.Cloudflare.com/workers/platform/limits#how-many-subrequests-can-i-make)
 
 #### What if I go over quota on one of my 3rd party APIs?
 Third parties may handle this differently, though rejection will likely come in the form of some flavor of `4XX`, with `429 Too Many Requests` typical for rate limiting. As this example is currently authored, WeatherBit, instead of sending their typical `data` object, would respond with:
@@ -120,10 +113,7 @@ Third parties may handle this differently, though rejection will likely come in 
 But as you can see it still returns a valid JSON object. So long as the response is JSON, or example passes it along, for the client to handle. In this case testing for the lack of a `data` object and the presence of a `status_code` should be sufficient to handle the issue gracefully.
 
 #### What if I am using sloooowApi.com?
-CF states that the typical CPU runtime for a worker is less then one millisecond, with a cap of 10ms on the free tier and, 50ms on the "Bundled" tier[^1]. However there is **not** a 'hard limit' on the amount of "real time" a Worker may use waiting for a fetch response, as long as the client that made the request remains connected.[^2]
-
-[^1](https://developers.Cloudflare.com/workers/platform/limits#cpu-runtime)
-[^2](https://developers.Cloudflare.com/workers/platform/limits#how-long-can-a-subrequest-take)
+CF states that the typical CPU runtime for a worker is less then one millisecond, with a cap of 10ms on the free tier and, 50ms on the "Bundled" tier[1](https://developers.Cloudflare.com/workers/platform/limits#cpu-runtime). However there is **not** a 'hard limit' on the amount of "real time" a Worker may use waiting for a fetch response, as long as the client that made the request remains connected.[2](https://developers.Cloudflare.com/workers/platform/limits#how-long-can-a-subrequest-take)
 
 ## Further Reading
 
