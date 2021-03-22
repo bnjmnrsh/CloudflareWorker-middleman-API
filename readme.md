@@ -117,23 +117,23 @@ CF states that the typical CPU runtime for a worker is less then one millisecond
 
 ## Further Reading
 
-If you're new to Cloudflare Workers,
-[Introducing Cloudflare Workers: Run JavaScript Service Workers at the Edge](https://blog.Cloudflare.com/introducing-Cloudflare-workers/)
-[How Workers Work](https://developers.Cloudflare.com/workers/learning/how-workers-works)
+If you're new to Cloudflare Workers:
+[Introducing Cloudflare Workers: Run JavaScript Service Workers at the Edge](https://blog.Cloudflare.com/introducing-Cloudflare-workers/)<br> and 
+[How Workers Work](https://developers.Cloudflare.com/workers/learning/how-workers-works) are a good place to start. 
 
-This project was inspired by these two articles by Chris Ferdinandi, who provides a great intro:
-[# Getting started with serverless using Cloudflare Workers and vanilla JS](https://gomakethings.com/getting-started-with-serverless-using-Cloudflare-workers-and-vanilla-js/)
-[How to create a middleman API with Cloudflare Workers and vanilla JS](https://gomakethings.com/how-to-create-a-middleman-api-with-Cloudflare-workers-and-vanilla-js/)
+This project was inspired by these two articles by Chris Ferdinandi, who provides a great intro:<br>
+[Getting started with serverless using Cloudflare Workers and vanilla JS](https://gomakethings.com/getting-started-with-serverless-using-Cloudflare-workers-and-vanilla-js/)<br>
+[How to create a middleman API with Cloudflare Workers and vanilla JS](https://gomakethings.com/how-to-create-a-middleman-api-with-Cloudflare-workers-and-vanilla-js/)<br>
 
-Workers Docs: https://developers.Cloudflare.com/workers/
-Workers Examples: https://developers.Cloudflare.com/workers/examples
-Recipe Exchange: https://blog.Cloudflare.com/Cloudflare-workers-recipe-exchange
+Workers Docs: https://developers.Cloudflare.com/workers/<br>
+Workers Examples: https://developers.Cloudflare.com/workers/examples<br>
+Recipe Exchange: https://blog.Cloudflare.com/Cloudflare-workers-recipe-exchange<br>
 
-Fetch JSON: https://developers.Cloudflare.com/workers/examples/fetch-json
-Return JSON: https://developers.Cloudflare.com/workers/examples/return-json
+Fetch JSON: https://developers.Cloudflare.com/workers/examples/fetch-json<br>
+Return JSON: https://developers.Cloudflare.com/workers/examples/return-json<br>
 
-Conditional Response: https://developers.Cloudflare.com/workers/examples/conditional-response
-Hotlink Protection: https://developers.Cloudflare.com/workers/examples/hot-link-protection
+Conditional Response: https://developers.Cloudflare.com/workers/examples/conditional-response<br>
+Hotlink Protection: https://developers.Cloudflare.com/workers/examples/hot-link-protection<br>
 
-How Workers Cache works: https://developers.Cloudflare.com/workers/learning/how-the-cache-works
-Fetch Caching: https://developers.Cloudflare.com/workers/examples/cache-using-fetch
+How Workers Cache works: https://developers.Cloudflare.com/workers/learning/how-the-cache-works<br>
+Fetch Caching: https://developers.Cloudflare.com/workers/examples/cache-using-fetch<br>
