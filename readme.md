@@ -16,21 +16,21 @@ Anecdotal experience based on my rural broadband and a shoddy 3G network connect
 
 ## What's included?
 
-### Hotlink protection ⛓️⛓️
-We check the incoming request, if its not from one of your whitelisted origins, its rejected with a 403 response.
-
 ### Roll your own API from multiple sources 🚪🚪🚪
 The `aToFetch` array provides a mechanism for naming multiple API endpoints, and all the responses are returned as one unified JSON object.
+
+### Hotlink protection ⛓️⛓️
+We check the incoming request, if its not from one of your whitelisted origins, its rejected with a `403` response.
 
 ### Caching 🚤
 While Cloudflare Workers have access to the powerful cache-control features of the [Cache API](https://developers.Cloudflare.com/workers/runtime-apis/cache), for Workers using [fetch](https://developers.Cloudflare.com/workers/learning/how-the-cache-works#fetch), (as we are), Cloudflare offers [a powerful but simplified caching API](https://developers.Cloudflare.com/workers/examples/cache-using-fetch).
 
 ### Errors 🚨
-In addition to console logs in the Workers Quick Edit interface, HTTP and upstream API errors are passed through to the response object with handle-able `{'errror': response}` entries  for each request. A single non-responsive endpoint won't bring the whole thing down.
+In addition to console logs in the Workers Quick Edit interface, HTTP and upstream API errors are passed through to the response object with handle-able `{'errror': response}` entries for each request. A single non-responsive endpoint won't bring the whole thing down.
 
 ## What cooking in this recipe? 🍲 🥘
 
-In this recipe, for demonstration we use the [WeatherBit.io](https://www.weatherbit.io/) APIs, with the API key stored in a [environment variable](https://gomakethings.com/how-to-use-environment-variables-with-Cloudflare-workers-and-vanilla-js/).
+In this recipe, for demonstration we use the [WeatherBit.io](https://www.weatherbit.io/) APIs, and we keep the API key hidden in a [environment variable](https://gomakethings.com/how-to-use-environment-variables-with-Cloudflare-workers-and-vanilla-js/).
 
 You'll need to:
 1. Have a [Cloudflare Workers account](https://dash.Cloudflare.com/sign-up/workers)
@@ -42,14 +42,14 @@ Once your worker is published, try running the URL for it in your browser: `http
 
 Your should receive the following:
 
->#### 403 Not a whitelisted domain. <br>
+>  **403 Not a whitelisted domain.** <br>
 >  **content-length:** `42` <br>
 >  **content-type:** `text/plain;charset=UTF-8` <br>
->  `Requests are not allowed from this domain.`<br>
+>  `Requests are not allowed from this domain -- no tacos for you!`<br>
 
 Now set the variable  `bDBG = true` and re-run the request. You should now get the following:
 
->####200 OK <br>
+> **200 OK** <br>
 > **access-control-allow-headers:** `*` <br>
 > **access-control-allow-methods:** `GET` <br>
 > **access-control-allow-origin:** `*`<br>
@@ -60,7 +60,7 @@ Now set the variable  `bDBG = true` and re-run the request. You should now get t
 The WeatherBit API requires a location in order to do its  `☀️ || ⛈` magic. Try adding longitude and latitude values:
 `https://YOURWORKER.YOURACCOUNT.workers.dev/?lat=28.385233&lon=-81.563873`
 
->####200 OK <br>
+> **200 OK** <br>
 > **access-control-allow-headers:** `*` <br>
 > **access-control-allow-methods: **`GET`<br>
 > **access-control-allow-origin:** `*`<br>
