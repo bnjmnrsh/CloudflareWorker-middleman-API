@@ -4,7 +4,7 @@ A recipe for a light middleman API using [Cloudflare Workers](https://blog.Cloud
 
 ## Why?
 
-### Keeping secrets secret 👮🏼‍♂️
+### Keeping secrets, secret 👮🏼‍♂️
 
 With Cloudflare Workers we can leverage [environmental variables](https://developers.Cloudflare.com/workers/platform/environments) and [secrets](https://developers.Cloudflare.com/workers/cli-wrangler/commands#secret) [1](https://blog.Cloudflare.com/workers-secrets-environment/), to keep these details out of your HTTP requests, code base and repos. 🎉
 
@@ -16,7 +16,7 @@ Cloudflare Workers are 'serverless', written in JavaScript, and are easy to spoo
 
 Cloudflare's global network of servers minimises network latency by ensuring that your requests are served from a Worker node nearest to your users. Further, any subsequent 3rd party API fetch calls that your middleman makes, use Cloudfare's best-in-class global network, resulting in flaming hot tacos for response times. 🌮🌮
 
-Anecdotal experience based on my flaky broadband in rural Scotland, and a shoddy 3G network connection prove that a middleman API using this approach greatly improved the responsiveness of my apps when collating two or more asynchronous fetch requests. Also, I can now run faster and can learn a new language in a day - your millage may vary. 🏃🏼‍♂️
+Anecdotal experience based on my flaky broadband in rural Scotland, and even shoddier 3G network prove that a middleman API using this approach greatly improved the responsiveness of my apps when collating two or more asynchronous fetch requests. Also, I can now run faster, and can learn a new language in a day - your millage may vary. 🏃🏼‍♂️
 
 ## What's included?
 
@@ -26,11 +26,11 @@ The `aToFetch` array provides a mechanism for naming multiple API endpoints, and
 
 ### Hotlink protection ⛓️⛓️
 
-We check the incoming request, if its not from one of your whitelisted origins, its rejected with a `403` response.
+We check the incoming request, if its not from one of your whitelisted origins, it's rejected with a `403` response -- no tacos for you sir/mam!
 
 ### Caching 🚤
 
-While Cloudflare Workers do have access to the powerful cache-control features of the [Cache API](https://developers.Cloudflare.com/workers/runtime-apis/cache), for Workers using [fetch](https://developers.Cloudflare.com/workers/learning/how-the-cache-works#fetch), (as we are), Cloudflare offers [a powerful but simplified caching API](https://developers.Cloudflare.com/workers/examples/cache-using-fetch).
+While Cloudflare Workers do have access to the powerful cache-control features of the [Cache API](https://developers.Cloudflare.com/workers/runtime-apis/cache), for Workers using [fetch](https://developers.Cloudflare.com/workers/learning/how-the-cache-works#fetch), (as we are), Cloudflare offers [a simplified caching API](https://developers.Cloudflare.com/workers/examples/cache-using-fetch).
 
 ### Errors 🚨
 
