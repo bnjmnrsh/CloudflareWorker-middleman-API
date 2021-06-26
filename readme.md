@@ -128,7 +128,7 @@ But as you can see it still returns a valid JSON object. So long as the response
 
 #### What if I am using sloooowApi.com?
 
-CF states that the typical CPU runtime for a worker is less then one millisecond, with a cap of 10ms on the free tier and, 50ms on the "Bundled" tier [[1]](https://developers.Cloudflare.com/workers/platform/limits#cpu-runtime). So long running compute processes have a hard celing, however this doesn't inclue response times. There's **no 'hard limit'** on the amount of "real time" a Worker may use waiting for a fetch response, as long as the client that made the request remains connected. [[2]](https://developers.Cloudflare.com/workers/platform/limits#how-long-can-a-subrequest-take)
+CF states that the typical CPU runtime for a worker is less then one millisecond, with a cap of 10ms on the free tier and, 50ms on the "Bundled" tier [[3]](https://developers.Cloudflare.com/workers/platform/limits#cpu-runtime). So long running compute processes have a hard celing, however this doesn't inclue response times. There's **no 'hard limit'** on the amount of "real time" a Worker may use waiting for a fetch response, as long as the client that made the request remains connected. [[4]](https://developers.Cloudflare.com/workers/platform/limits#how-long-can-a-subrequest-take)
 
 ## Further Reading
 
