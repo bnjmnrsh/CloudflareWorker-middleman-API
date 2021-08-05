@@ -10,13 +10,13 @@ With Cloudflare Workers we can leverage [environmental variables](https://develo
 
 ### Simplicity & Cost 💰
 
-Cloudflare Workers are 'serverless', written in JavaScript, and are easy to spool up. This cuts out the setup and maintenance overhead of complex tooling. Cloudflare's generous free tier makes this perfect for side projects, Github Pages, etc.
+Cloudflare Workers are 'serverless', written in JavaScript, and are easy to spool up. This cuts out the setup and maintenance overhead of complex tooling. Cloudflare's generous free tier makes them perfect for side projects, Github Pages, etc.
 
 ### Speed 🏎
 
 Cloudflare's global network of low latency servers ensures that your requests are handeled by a hub nearest to your users. Further, any subsequent 3rd party API fetch calls your worker make, use Cloudfare's best-in-class global network, resulting in flaming hot tacos for response times 🌮🌮 (and who doesn't like tacos).
 
-Anecdotal experience based on flaky broadband in rural Scotland, and an even shoddier 3G network _prove_ that a middleman API using this approach greatly improved the responsiveness of my apps when collating two or more asynchronous fetch requests. Also, I can now run faster, can learn a new languages in a day, and have lasers for eyes - your millage may vary. 🏃🏼‍♂️ 🕶️
+Anecdotal experience based on flaky broadband in rural Scotland, and an even shoddier 3G network _prove™️_ that this middleman API approach greatly improved the responsiveness of my apps, especially when collating two or more asynchronous fetch requests. Also, I can now run faster, can learn a new languages in a day, and have lasers for eyes .... your millage may vary. 🏃🏼‍♂️ 🕶️
 
 ## What's included?
 
@@ -26,7 +26,7 @@ The `aToFetch` array provides a mechanism for naming multiple API endpoints, and
 
 ### Hotlink protection ⛓️⛓️
 
-We also check the incoming request, if its not from one of your whitelisted origins, it's rejected with a `403` response -- no tacos for you sir/mam!
+You can also check the IP address of incoming requests, if its not from one of your whitelisted origins (ie your app), it's rejected with a `403` response -- No tacos for you sir/mam!
 
 ### Caching 🚤
 
@@ -80,7 +80,7 @@ The WeatherBit API requires a location in order to do its  `☀️ || ⛈` magic
 
 ## Testing
 
-Once your API is live, you probably dont want to set the `bDBG` boolean variable to true again. However for quick checks for what your responses are, you can pop open the console on one of your white listed domains and run the following:
+Once your API is live, you probably dont want to set the `bDBG` boolean variable to true again. However for quick checks for what your responses are, you can pop open the console in your browser, while on one of your white listed domains and run the following:
 
 ```
 fetch('https://YOURWORKER.YOURACCOUNT.workers.dev/?lat=28.385233&lon=-81.563873')
@@ -128,7 +128,7 @@ But as you can see it still returns a valid JSON object. So long as the response
 
 #### What if I am using sloooowApi.com?
 
-CF states that the typical CPU runtime for a worker is less then one millisecond, with a cap of 10ms on the free tier and, 50ms on the "Bundled" tier [[3]](https://developers.Cloudflare.com/workers/platform/limits#cpu-runtime). So long running compute processes have a hard celing, however this doesn't inclue response times. There's **no 'hard limit'** on the amount of "real time" a Worker may use waiting for a fetch response, as long as the client that made the request remains connected. [[4]](https://developers.Cloudflare.com/workers/platform/limits#how-long-can-a-subrequest-take)
+CF states that the typical CPU runtime for a worker is less then one millisecond, with a cap of 10ms on the free tier and, 50ms on the "Bundled" tier [[3]](https://developers.Cloudflare.com/workers/platform/limits#cpu-runtime). So, long running compute processes have a hard celing, however this doesn't include response times. There's **no 'hard limit'** on the amount of "real time" a Worker may use waiting for a fetch response, as long as the client that made the request remains connected. [[4]](https://developers.Cloudflare.com/workers/platform/limits#how-long-can-a-subrequest-take)
 
 ## Further Reading
 
