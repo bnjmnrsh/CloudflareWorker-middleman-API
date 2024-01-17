@@ -1,6 +1,6 @@
 # A simple middleman API boilerplate for Cloudflare Workers
 
-A recipe for a light middleman API using [Cloudflare Workers](https://blog.Cloudflare.com/introducing-Cloudflare-workers/), which includes whitelisting origin requests, fetching multiple third party endpoints, caching, and a single collated JSON response. PR's welcome.
+A recipe for a light middleman API using [Cloudflare Workers](https://blog.Cloudflare.com/introducing-Cloudflare-workers/), which includes whitelisting origin requests, fetching multiple third-party endpoints, caching, and a single collated JSON response. PR's welcome.
 
 ## Why?
 
@@ -14,9 +14,9 @@ Cloudflare Workers are 'serverless', written in JavaScript, and are easy to spoo
 
 ### Speed 🏎
 
-Cloudflare's global network of low latency servers ensures that your requests are handeled by a hub nearest to your users. Further, any subsequent 3rd party API fetch calls your worker make, use Cloudfare's best-in-class global network, resulting in flaming hot tacos for response times 🌮🌮 (and who doesn't like tacos).
+Cloudflare's global network of low-latency servers ensures that your requests are handled by a hub nearest to your users. Further, any subsequent 3rd party API fetch calls your worker makes use of Cloudflare's best-in-class global network, resulting in flaming hot tacos for response times 🌮🌮 (and who doesn't like tacos).
 
-Anecdotal experience based on flaky broadband in rural Scotland, and an even shoddier 3G network _prove™️_ that this middleman API approach greatly improved the responsiveness of my apps, especially when collating two or more asynchronous fetch requests. Also, I can now run faster, can learn a new languages in a day, and have lasers for eyes .... your millage may vary. 🏃🏼‍♂️ 🕶️
+Anecdotal experience based on flaky broadband in rural Scotland and an even shoddier 3G network _proves_ that this middleman API approach greatly improved the responsiveness of my apps, especially when collating two or more asynchronous fetch requests. Also, I can now run faster, learn a new language in a day, and have lasers for my eyes .... your mileage may vary. 🏃🏼‍♂️ 🕶️
 
 ## What's included?
 
@@ -26,7 +26,7 @@ The `aToFetch` array provides a mechanism for naming multiple API endpoints, and
 
 ### Hotlink protection ⛓️⛓️
 
-You can also check the IP address of incoming requests, if its not from one of your whitelisted origins (ie your app), it's rejected with a `403` response -- No tacos for you sir/mam!
+You can also check the IP address of incoming requests; if it's not from one of your whitelisted origins (i.e. your app), it's rejected with a `403` response -- No tacos for you, sir/mam!
 
 ### Caching 🚤
 
@@ -34,11 +34,11 @@ While Cloudflare Workers do have access to the powerful cache-control features o
 
 ### Errors 🚨
 
-In addition to console logs in the Workers Quick Edit interface, HTTP and upstream API errors are passed through to the response object with handle-able `{'errror': response}` entries for each request. A single non-responsive endpoint won't bring the whole thing down.
+In addition to console logs in the Workers Quick Edit interface, HTTP and upstream API errors are passed through to the response object with handle-able `{'error': response}` entries for each request. A single non-responsive endpoint won't bring the whole thing down.
 
-## What cooking in this recipe? 🍲 🥘
+## What's cooking in this recipe? 🍲 🥘
 
-In this recipe, for demonstration we use the [WeatherBit.io](https://www.weatherbit.io/) APIs, and we keep the API key hidden in a [environment variable](https://gomakethings.com/how-to-use-environment-variables-with-Cloudflare-workers-and-vanilla-js/).
+In this recipe, for demonstration, we use the [WeatherBit.io](https://www.weatherbit.io/) APIs, and we keep the API key hidden in a [environment variable](https://gomakethings.com/how-to-use-environment-variables-with-Cloudflare-workers-and-vanilla-js/).
 
 You'll need to:
 1. Have a [Cloudflare Workers account](https://dash.Cloudflare.com/sign-up/workers)
@@ -80,7 +80,7 @@ The WeatherBit API requires a location in order to do its  `☀️ || ⛈` magic
 
 ## Testing
 
-Once your API is live, you probably dont want to set the `bDBG` boolean variable to true again. However for quick checks for what your responses are, you can pop open the console in your browser, while on one of your white listed domains and run the following:
+Once your API is live, you probably don't want to set the `bDBG` boolean variable to true again. However, for quick checks for what your responses are, you can pop open the console in your browser while on one of your white-listed domains and run the following:
 
 ```
 fetch('https://YOURWORKER.YOURACCOUNT.workers.dev/?lat=28.385233&lon=-81.563873')
@@ -105,11 +105,11 @@ fetch('https://YOURWORKER.YOURACCOUNT.workers.dev/?lat=28.385233&lon=-81.563873'
 
 #### Burst Rates
 
-At the time of writing, free Workers plans are subject to burst limits of 1,000 requests per minute. Beyond this, the Worker will return a HTTP `429` response, which your application should handle gracefully.
+At the time of writing, free Workers' plans are subject to burst limits of 1,000 requests per minute. Beyond this, the Worker will return an HTTP `429` response, which your application should handle gracefully.
 
 #### Daily Limits
 
-At the time of writing, free Workers plans are subject to daily request limit of 100,000 requests.  How requests greater then 100,000 a day are handled depends on how routes are set up in your worker. For our purposes the default 'Fail closed' will respond as if there is no worker at all, returning a HTTP `552` status code, which your application should handle gracefully.
+At the time of writing, free Workers' plans are subject to a daily request limit of 100,000 requests.  How requests greater than 100,000 a day are handled depends on how routes are set up in your workers. For our purposes, the default 'Fail closed' will respond as if there is no worker at all, returning an HTTP `552` status code, which your application should handle gracefully.
 
 Details on limits: [Workers Limits](https://developers.Cloudflare.com/workers/platform/limits#request)
 
@@ -121,18 +121,18 @@ CF caps the number of subrequests [[1]](https://support.Cloudflare.com/hc/en-us/
 
 #### What if I go over quota on one of my 3rd party APIs?
 
-Third parties may handle this differently, though rejection will likely come in the form of some flavor of `4XX`, with `429 Too Many Requests` typical for rate limiting. As this example uses the WeatherBit API, instead of sending their typical `data` object, WeatherBit responds with:
+Third parties may handle this differently, though rejection will likely come in the form of some flavour of `4XX`, with `429 Too Many Requests` typical for rate limiting. As this example uses the WeatherBit API, instead of sending their typical `data` object, WeatherBit responds with:
 `{ "status_code": 429, "status_message": "Your request count (1022) is over the allowed limit of 1000 per day - Upgrade your key, or retry after 848.16666666667 minutes" }`
 
-But as you can see it still returns a valid JSON object. So long as the response is JSON, our example passes it along, for the client to handle. In this case testing for the lack of a `data` object and/or the presence of a `status_code` should be sufficient to handle the issue gracefully.
+But as you can see, it still returns a valid JSON object. So long as the response is JSON, our example passes it along for the client to handle. In this case, testing for the lack of a `data` object and/or the presence of a `status_code` should be sufficient to handle the issue gracefully.
 
 #### What if I am using sloooowApi.com?
 
-CF states that the typical CPU runtime for a worker is less then one millisecond, with a cap of 10ms on the free tier and, 50ms on the "Bundled" tier [[3]](https://developers.Cloudflare.com/workers/platform/limits#cpu-runtime). So, long running compute processes have a hard celing, however this doesn't include response times. There's **no 'hard limit'** on the amount of "real time" a Worker may use waiting for a fetch response, as long as the client that made the request remains connected. [[4]](https://developers.Cloudflare.com/workers/platform/limits#how-long-can-a-subrequest-take)
+CF states that the typical CPU runtime for a worker is less than one millisecond, with a cap of 10ms on the free tier and 50ms on the "Bundled" tier [[3]](https://developers.Cloudflare.com/workers/platform/limits#cpu-runtime). So, long-running computing processes have a hard ceiling. However, this doesn't include response times. There's **no 'hard limit'** on the amount of "real-time" a Worker may use waiting for a fetch response, as long as the client that made the request remains connected. [[4]](https://developers.Cloudflare.com/workers/platform/limits#how-long-can-a-subrequest-take)
 
 ## Further Reading
 
-If you're new to Cloudflare Workers, these articlse are a good place to start:
+If you're new to Cloudflare Workers, these articles are a good place to start:
 - [Introducing Cloudflare Workers: Run JavaScript Service Workers at the Edge](https://blog.Cloudflare.com/introducing-Cloudflare-workers/)
 - [How Workers Work](https://developers.Cloudflare.com/workers/learning/how-workers-works)
 
